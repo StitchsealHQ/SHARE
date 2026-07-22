@@ -49,6 +49,8 @@
   .tag.design .dot{background:var(--violet);}
   .tag.proto{background:var(--teal-soft);color:var(--teal);}
   .tag.proto .dot{background:var(--teal);}
+  .tag.project{background:var(--blue-soft);color:var(--blue);}
+  .tag.project .dot{background:var(--blue);}
   .date{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
   .doc b{font-size:17.5px;font-weight:800;letter-spacing:-.01em;line-height:1.35;margin-bottom:8px;}
   .doc .desc{font-size:13.5px;color:var(--muted);flex:1;margin-bottom:18px;}
@@ -64,7 +66,7 @@
 <div class="wrap">
   <p class="eyebrow">Stitchseal · Personal Docs</p>
   <h1><span class="pt">개인 작업</span>,<br>문서 저장소</h1>
-  <p class="lead">사이드 프로젝트의 디자인 시안과 프로토타입을 모아둡니다.<br>필요한 문서를 검색하고 바로 확인하세요.</p>
+  <p class="lead">진행 중인 프로젝트와 디자인 시안·프로토타입을 한곳에 모아둡니다.<br>필요한 항목을 검색하고 바로 확인하세요.</p>
 
   <div class="toolbar">
     <div class="search">
@@ -72,6 +74,7 @@
       <input id="q" type="search" placeholder="제목·내용 검색" autocomplete="off">
     </div>
     <button class="chip on" data-tag="">전체</button>
+    <button class="chip" data-tag="프로젝트">프로젝트</button>
     <button class="chip" data-tag="디자인 시안">디자인 시안</button>
     <button class="chip" data-tag="프로토타입">프로토타입</button>
     <button class="sort" id="sort">최신순 ↓</button>
@@ -83,6 +86,20 @@
   </div>
 
   <div class="grid" id="list">
+    <a class="doc" href="https://stitchsealhq.github.io/" target="_blank" rel="noopener" data-tag="프로젝트" data-date="2026-07-20">
+      <span class="tagline"><span class="tag project"><span class="dot"></span>프로젝트</span><span class="date">2026-07-20</span></span>
+      <b>STITCHSEAL 메인 사이트</b>
+      <span class="desc">stitchsealhq.github.io — 개인 브랜드 랜딩 페이지</span>
+      <span class="more">사이트 열기 <span class="arr">→</span></span>
+    </a>
+
+    <a class="doc" href="https://stitchsealhq.github.io/ddm-archive/" target="_blank" rel="noopener" data-tag="프로젝트" data-date="2026-07-21">
+      <span class="tagline"><span class="tag project"><span class="dot"></span>프로젝트</span><span class="date">2026-07-21</span></span>
+      <b>동대문 아카이브</b>
+      <span class="desc">동대문 관련 뉴스·자료 자동 수집 아카이브 — 매일 자동 갱신 · 연도별 분류 · 유튜브 포함</span>
+      <span class="more">사이트 열기 <span class="arr">→</span></span>
+    </a>
+
     <a class="doc" href="p/fitgrant/" data-tag="디자인 시안" data-date="2026-07-10">
       <span class="tagline"><span class="tag design"><span class="dot"></span>디자인 시안</span><span class="date">2026-07-10</span></span>
       <b>FITGRANT 홈페이지 디자인 시안</b>
