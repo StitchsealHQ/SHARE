@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>STITCHSEAL — 작업 문서</title>
+<style>
+  :root{
+    --bg:#FFFFFF;--surface:#F7F9FC;--ink:#0E1526;--muted:#6B7688;--line:#E8ECF3;
+    --blue:#2657E8;--blue-soft:#EEF3FE;
+    --violet:#6D4FE0;--violet-soft:#F1EEFC;
+    --teal:#0E9BB5;--teal-soft:#E8F7FA;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Pretendard","SUIT","Malgun Gothic","맑은 고딕",-apple-system,"Segoe UI",sans-serif;
+    line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px;margin:0 auto;padding:64px 24px 96px;}
+
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin:0 0 14px;}
+  h1{font-size:clamp(30px,5vw,42px);font-weight:800;line-height:1.22;letter-spacing:-.02em;margin:0 0 14px;}
+  h1 .pt{color:var(--blue);}
+  .lead{color:var(--muted);font-size:16px;margin:0 0 36px;max-width:560px;}
+
+  .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 0 22px;border-bottom:1px solid var(--line);margin-bottom:26px;}
+  .search{flex:1;min-width:220px;display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 15px;transition:border-color .15s;}
+  .search:focus-within{border-color:var(--blue);background:#fff;}
+  .search svg{flex:none;color:var(--muted);}
+  .search input{flex:1;border:0;background:transparent;font:inherit;font-size:14px;color:var(--ink);outline:none;min-width:0;}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-size:12.5px;font-weight:700;letter-spacing:.02em;padding:9px 16px;border-radius:24px;cursor:pointer;transition:.13s;}
+  .chip:hover{border-color:var(--blue);color:var(--blue);}
+  .chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .sort{border:0;background:transparent;color:var(--muted);font-size:12.5px;font-weight:700;cursor:pointer;padding:9px 2px;letter-spacing:.02em;}
+  .sort:hover{color:var(--blue);}
+
+  .meta-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;}
+  .meta-row .label{font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;}
+  .count{font-size:13px;color:var(--muted);}
+  .count b{color:var(--blue);font-weight:800;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:640px){.grid{grid-template-columns:1fr;}}
+
+  .doc{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;text-decoration:none;color:var(--ink);transition:box-shadow .18s,border-color .18s,transform .18s;}
+  .doc:hover{border-color:transparent;box-shadow:0 10px 34px rgba(14,21,38,.10);transform:translateY(-2px);}
+  .tagline{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.08em;padding:5px 13px;border-radius:20px;}
+  .tag .dot{width:6px;height:6px;border-radius:50%;}
+  .tag.design{background:var(--violet-soft);color:var(--violet);}
+  .tag.design .dot{background:var(--violet);}
+  .tag.proto{background:var(--teal-soft);color:var(--teal);}
+  .tag.proto .dot{background:var(--teal);}
+  .date{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .doc b{font-size:17.5px;font-weight:800;letter-spacing:-.01em;line-height:1.35;margin-bottom:8px;}
+  .doc .desc{font-size:13.5px;color:var(--muted);flex:1;margin-bottom:18px;}
+  .more{font-size:13.5px;font-weight:700;color:var(--blue);}
+  .more .arr{display:inline-block;transition:transform .18s;}
+  .doc:hover .more .arr{transform:translateX(4px);}
+
+  .empty{display:none;text-align:center;color:var(--muted);font-size:14px;padding:56px 0;}
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);}
+  footer .brand{font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-size:12px;}
+</style>
+</head><body>
+<div class="wrap">
+  <p class="eyebrow">Stitchseal · Personal Docs</p>
+  <h1><span class="pt">개인 작업</span>,<br>문서 저장소</h1>
+  <p class="lead">사이드 프로젝트의 디자인 시안과 프로토타입을 모아둡니다.<br>필요한 문서를 검색하고 바로 확인하세요.</p>
+
+  <div class="toolbar">
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <input id="q" type="search" placeholder="제목·내용 검색" autocomplete="off">
+    </div>
+    <button class="chip on" data-tag="">전체</button>
+    <button class="chip" data-tag="디자인 시안">디자인 시안</button>
+    <button class="chip" data-tag="프로토타입">프로토타입</button>
+    <button class="sort" id="sort">최신순 ↓</button>
+  </div>
+
+  <div class="meta-row">
+    <span class="label">Documents</span>
+    <span class="count"><b id="shown">0</b> / <span id="total">0</span>건</span>
+  </div>
+
+  <div class="grid" id="list">
+    <a class="doc" href="p/fitgrant/" data-tag="디자인 시안" data-date="2026-07-10">
+      <span class="tagline"><span class="tag design"><span class="dot"></span>디자인 시안</span><span class="date">2026-07-10</span></span>
+      <b>FITGRANT 홈페이지 디자인 시안</b>
+      <span class="desc">인트로 커서 그래픽 · ENTER 진입 구조 · 메인 페이지 — 디자인 프리뷰(내용은 자리표시)</span>
+      <span class="more">사이트 보기 <span class="arr">→</span></span>
+    </a>
+
+    <a class="doc" href="p/fitgrant/effects.html" data-tag="프로토타입" data-date="2026-07-10">
+      <span class="tagline"><span class="tag proto"><span class="dot"></span>프로토타입</span><span class="date">2026-07-10</span></span>
+      <b>커서 이펙트 샘플러 (6종 비교)</b>
+      <span class="desc">Tubes · Neon · Particles (오픈소스) + Plexus · Glow Trail · Fireflies (직접 구현) — 1~6키 전환</span>
+      <span class="more">사이트 보기 <span class="arr">→</span></span>
+    </a>
+  </div>
+
+  <p class="empty" id="empty">조건에 맞는 문서가 없습니다.</p>
+
+  <footer>
+    <span class="brand">Stitchseal</span>
+    <span>개인 작업물 · 비공개 색인(noindex)</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var docs = Array.prototype.slice.call(document.querySelectorAll('.doc'));
+  var q = document.getElementById('q');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var sortBtn = document.getElementById('sort');
+  var list = document.getElementById('list');
+  var empty = document.getElementById('empty');
+  var shown = document.getElementById('shown');
+  var total = document.getElementById('total');
+  var activeTag = '', desc = true;
+  total.textContent = docs.length;
+
+  function apply(){
+    var kw = q.value.trim().toLowerCase();
+    var n = 0;
+    docs.forEach(function(d){
+      var okTag = !activeTag || d.getAttribute('data-tag') === activeTag;
+      var okKw = !kw || d.textContent.toLowerCase().indexOf(kw) !== -1;
+      var show = okTag && okKw;
+      d.style.display = show ? '' : 'none';
+      if(show) n++;
+    });
+    shown.textContent = n;
+    empty.style.display = n ? 'none' : 'block';
+  }
+  function sort(){
+    docs.sort(function(a,b){
+      var da = a.getAttribute('data-date'), db = b.getAttribute('data-date');
+      return desc ? db.localeCompare(da) : da.localeCompare(db);
+    });
+    docs.forEach(function(d){ list.appendChild(d); });
+    sortBtn.textContent = desc ? '최신순 ↓' : '오래된순 ↑';
+  }
+  q.addEventListener('input', apply);
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on');
+      activeTag = c.getAttribute('data-tag');
+      apply();
+    });
+  });
+  sortBtn.addEventListener('click', function(){ desc = !desc; sort(); });
+  sort(); apply();
+})();
+</script>
+</body></html>
