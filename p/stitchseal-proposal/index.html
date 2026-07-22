@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>패션 디자인 IP 증명·거래 플랫폼 사업제안서</title>
+<style>
+  :root{
+    --ink:#1c2130; --sub:#5b6478; --line:#e2e6ee; --bg:#f6f7fa; --card:#ffffff;
+    --accent:#8a2be2; --accent-deep:#5d1ba0; --accent-soft:#f4edfc;
+    --ok:#0e8a5f; --risk:#c43d3d; --warn-bg:#fdf6ec; --warn-line:#e8c98a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px 80px}
+
+  .cover{padding:70px 0 40px;border-bottom:3px solid var(--ink);margin-bottom:40px}
+  .cover .kicker{font-size:12px;letter-spacing:.2em;color:var(--accent-deep);font-weight:800;margin-bottom:14px}
+  .cover h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:10px}
+  .cover .subtitle{font-size:16px;color:var(--sub);margin-bottom:26px}
+  .cover .meta{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--sub)}
+  .cover .meta b{color:var(--ink);font-weight:700}
+
+  section{margin-bottom:48px}
+  h2{font-size:20px;font-weight:800;margin-bottom:16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:15.5px;font-weight:700;margin:22px 0 8px}
+  p{margin-bottom:12px}
+  ul,ol{margin:0 0 12px 20px}
+  li{margin-bottom:6px}
+  strong{font-weight:700}
+
+  .lead{background:var(--accent-soft);border:1px solid #ddc9f5;border-radius:10px;padding:20px 22px;margin-bottom:16px}
+  .lead .label{font-size:12px;font-weight:800;color:var(--accent-deep);letter-spacing:.12em;margin-bottom:8px}
+  .lead p{margin-bottom:8px}
+  .lead p:last-child{margin-bottom:0}
+
+  .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card);margin:14px 0 18px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:540px}
+  th{background:#f1eef8;text-align:left;padding:10px 14px;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .ok{color:var(--ok);font-weight:700}
+  .risk{color:var(--risk);font-weight:700}
+
+  .phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0 18px}
+  @media(max-width:720px){.phases{grid-template-columns:1fr}}
+  .phase{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;position:relative}
+  .phase .step{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;border-radius:20px;padding:3px 12px;margin-bottom:10px}
+  .phase h4{font-size:15px;font-weight:800;margin-bottom:4px}
+  .phase .goal{font-size:12px;color:var(--accent-deep);font-weight:700;margin-bottom:10px}
+  .phase ul{margin-left:16px;margin-bottom:0}
+  .phase li{font-size:13px;margin-bottom:6px}
+  .phase li:last-child{margin-bottom:0}
+
+  .flow{display:flex;align-items:stretch;gap:0;margin:16px 0 18px;flex-wrap:wrap}
+  .flow .node{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 14px;text-align:center}
+  .flow .node .t{font-size:13.5px;font-weight:800;margin-bottom:4px}
+  .flow .node p{font-size:12px;color:var(--sub);margin:0;line-height:1.5}
+  .flow .arrow{display:flex;align-items:center;padding:0 8px;color:var(--sub);font-size:18px;font-weight:700}
+  @media(max-width:720px){.flow{flex-direction:column}.flow .arrow{justify-content:center;padding:4px 0;transform:rotate(90deg)}}
+
+  .callout{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:10px;padding:16px 20px;margin:14px 0 18px;font-size:14px}
+  .callout b{font-weight:800}
+
+  .strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 18px}
+  @media(max-width:640px){.strengths{grid-template-columns:1fr}}
+  .strength{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .strength h4{font-size:14px;font-weight:800;margin-bottom:6px;color:var(--accent-deep)}
+  .strength p{font-size:13px;color:var(--sub);margin:0}
+
+  .srcs{font-size:13px;color:var(--sub)}
+  .srcs ol{margin-left:20px}
+  .srcs li{margin-bottom:4px}
+  a{color:var(--accent-deep);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+
+  @media print{
+    body{background:#fff;font-size:12.5px}
+    .wrap{max-width:100%;padding:0}
+    .phase,.tablebox,.lead,.callout,.strength,.flow{break-inside:avoid}
+    a{color:inherit}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="kicker">BUSINESS PROPOSAL</div>
+  <h1>패션 디자인 IP 증명·거래 플랫폼<br>구축 사업제안서 <span style="font-size:18px;font-weight:600;color:var(--sub)">(가칭)</span></h1>
+  <div class="subtitle">블록체인 창작 증명과 유통 네트워크를 결합한 신진 디자이너 지식재산 보호 인프라</div>
+  <div class="meta">
+    <span>작성일 <b>2026년 7월 10일</b></span>
+    <span>구분 <b>공모전 출품용 초안 (v1.1)</b></span>
+  </div>
+</header>
+
+<div class="lead">
+  <div class="label">제안 요지</div>
+  <p><strong>패션 디자이너의 창작물을 공개(런웨이·출시) 전에 블록체인으로 시점 증명하고, 정식 디자인 출원과 B2B 거래까지 연결하는 원스톱 플랫폼을 제안한다.</strong></p>
+  <p>핵심 전략은 "등록 서비스를 파는 것"이 아니라, <strong>디자이너 커뮤니티 제휴(초기 사용자) × 창작 증명(신뢰) × 유통 파트너십(수익)</strong>을 하나의 흐름으로 묶는 것이다. 증명 단품 서비스는 세계지식재산기구(WIPO)조차 수요 부족으로 접은 시장이므로, 증명을 '보험'이 아닌 '영업 자산'으로 전환하는 설계가 본 제안의 차별점이다.</p>
+</div>
+
+<section>
+  <h2>1. 추진 배경 — 왜 지금, 왜 이 사업인가</h2>
+  <h3>패션 디자인은 IP 보호의 사각지대다</h3>
+  <ul>
+    <li><strong>카피가 가장 빠른 산업</strong> — 런웨이·SNS 공개 직후 수 주 내 카피 제품이 시장에 유통. 신진 디자이너일수록 법적 대응 여력이 없어 피해가 집중됨</li>
+    <li><strong>짧은 수명 주기</strong> — 시즌 단위로 소비되는 디자인 특성상, 권리 확보가 조금만 늦어도 보호의 실익이 사라짐</li>
+    <li><strong>증거의 부재</strong> — 도용 분쟁의 승패는 "누가 먼저 창작·공개했는가"의 증거 싸움인데, 개인 디자이너는 체계적 증거를 남기지 않음</li>
+  </ul>
+  <h3>기술·정책 환경이 무르익었다</h3>
+  <ul>
+    <li>블록체인 타임스탬프 기술은 성숙 단계 — 저비용으로 조작 불가능한 창작 시점 증거 확보 가능</li>
+    <li>AI 생성 콘텐츠 급증으로 "출처·창작자 증명" 수요가 구조적으로 확대되는 국면</li>
+    <li>신진 디자이너 육성·K-패션 진흥은 서울시·중앙정부의 지속 정책 과제 — 공공 재원과의 정합성이 높음</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 법제 분석 — 플랫폼이 설 수 있는 자리</h2>
+  <p>블록체인 등록은 <strong>법적 권리를 만들지 않는다</strong>. 이 한계를 정직하게 인정하고, 기존 법제와 상호보완하는 위치에 플랫폼을 배치한다.</p>
+  <div class="tablebox"><table>
+    <tr><th style="width:170px">보호 수단</th><th>내용</th><th style="width:230px">플랫폼과의 관계</th></tr>
+    <tr>
+      <td><b>디자인보호법 등록</b></td>
+      <td>의류는 일부심사 대상 + 신속심사로 <b>6일 내 심사</b>. 유일한 독점권이며 비용도 저렴</td>
+      <td>경쟁이 아닌 <b>연계 대상</b> — 플랫폼에서 변리사 제휴 원스톱 출원으로 연결</td>
+    </tr>
+    <tr>
+      <td><b>부정경쟁방지법 (자)목</b></td>
+      <td>등록 없이도 <b>출시 후 3년간 형태 모방 금지</b>. 패션 도용 분쟁의 실전 무기</td>
+      <td><b>핵심 접점</b> — 창작·공개 시점의 블록체인 증거가 분쟁에서 결정적 역할</td>
+    </tr>
+    <tr>
+      <td><b>저작권</b></td>
+      <td>의류 디자인은 응용미술저작물 인정 요건이 까다로워 보호 제한적</td>
+      <td>보조적 활용</td>
+    </tr>
+  </table></div>
+  <div class="callout"><b>포지셔닝 원칙:</b> "등록하면 보호됩니다"는 허위·과장 소지가 있다. 본 플랫폼의 정직한 가치제안은 <b>"공개 전 즉시 증거 확보(블록체인) + 정식 권리 연계(특허청) + 도용 대응 지원(부경법)"</b>의 3단 구조다.</div>
+</section>
+
+<section>
+  <h2>3. 시장 검증 — 실패와 성공에서 배운 설계 원칙</h2>
+  <div class="tablebox"><table>
+    <tr><th style="width:200px">사례</th><th>결과</th><th>교훈</th></tr>
+    <tr>
+      <td><b>WIPO PROOF</b><br><span style="font-size:12px;color:var(--sub)">세계지식재산기구 타임스탬프 서비스</span></td>
+      <td class="risk">2021년 중단</td>
+      <td>세계 최고 공신력으로도 <b>"증명 단품"은 팔리지 않음</b>. 창작자는 미래의 분쟁 가능성에 지갑을 열지 않는다</td>
+    </tr>
+    <tr>
+      <td><b>루이비통 AURA 컨소시엄</b><br><span style="font-size:12px;color:var(--sub)">명품 블록체인 정품인증</span></td>
+      <td class="ok">확산 중</td>
+      <td>증명이 <b>상거래 흐름 속에 심어져</b> 판매 도구가 될 때 작동한다</td>
+    </tr>
+  </table></div>
+  <p><strong>설계 원칙:</strong> 등록이 곧 영업이 되게 한다. 등록된 디자인이 바이어에게 노출되고 거래로 이어지며, 그 과정에서 증거가 자동으로 쌓이는 구조 — 디자이너가 돈을 내는 이유를 '보호'가 아닌 '매출'로 만든다.</p>
+</section>
+
+<section>
+  <h2>4. 사업 모델</h2>
+  <div class="flow">
+    <div class="node"><div class="t">① 등록</div><p>시즌 컬렉션 업로드<br>도식화·사진·작업지시서</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="t">② 증명</div><p>해시값 블록체인 기록<br>창작 증명서 발급</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="t">③ 권리화</div><p>변리사 제휴<br>디자인 출원 원스톱</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="t">④ 거래</div><p>B2B 카탈로그 노출<br>라이선싱·수주 연결</p></div>
+  </div>
+  <h3>수익 모델</h3>
+  <ul>
+    <li><strong>초기(1~2년차)</strong> — 공공 재원 기반 무료 제공: 서울시 패션 정책사업·특허청 IP 지원사업·콘진원 과제 수주로 운영 (디자이너 지불 의사가 낮은 초기 단계의 현실적 재원)</li>
+    <li><strong>성장기</strong> — 출원 연계 수수료(변리사 제휴), 도용 모니터링 구독, 브랜드·기업 회원(B2B 카탈로그 열람권)</li>
+    <li><strong>성숙기</strong> — 라이선싱 거래 중개 수수료. IP 토큰화(조각투자)는 디지털자산기본법 2단계 입법 확정 후 옵션으로 검토</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. 추진 전략 — 3단계 로드맵</h2>
+  <div class="phases">
+    <div class="phase">
+      <div class="step">PHASE 1</div>
+      <h4>증거 금고 · 파일럿</h4>
+      <div class="goal">목표: 사용 습관 검증</div>
+      <ul>
+        <li>디자이너 포트폴리오 등록 + 블록체인 타임스탬프 + 창작 증명서(PDF) 발급</li>
+        <li><b>패션쇼 공간·창작 스튜디오와 제휴해 참가 디자이너를 파일럿 그룹</b>으로 — "쇼 전에 등록하고 무대에 올려라"는 자연스러운 사용 시나리오</li>
+        <li>MVP: 웹 플랫폼 + 해시 앵커링 모듈 (2~3인 팀, 수개월)</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="step">PHASE 2</div>
+      <h4>법적 실효성 연결</h4>
+      <div class="goal">목표: 보호 가치 실증</div>
+      <ul>
+        <li>변리사 제휴 — 플랫폼에서 특허청 디자인 출원까지 원스톱</li>
+        <li>도용 대응 패키지 — 내용증명 템플릿 + 체인 증거 리포트</li>
+        <li>이미지 검색 기반 도용 모니터링 (알림 서비스)</li>
+        <li>분쟁 승소 사례 확보 → 플랫폼 신뢰의 결정적 마케팅 자산</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="step">PHASE 3</div>
+      <h4>거래로 확장</h4>
+      <div class="goal">목표: 수익 전환</div>
+      <ul>
+        <li>등록 디자인 B2B 카탈로그 — 바이어·제조사에 개방</li>
+        <li>도매 소싱·해외 리테일 유통 파트너와 제휴해 "등록 → 노출 → 수주" 완성</li>
+        <li>라이선싱 계약·로열티 정산 자동화(스마트 컨트랙트)</li>
+        <li>(입법 후) IP 토큰화 옵션 검토</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>6. 기술 구현 방안</h2>
+  <ul>
+    <li><strong>자체 메인넷 불필요</strong> — 디자인 파일의 해시값만 저비용 퍼블릭 체인에 앵커링. 원본 파일은 서버 보관, 체인에는 지문(해시)과 시각만 기록</li>
+    <li><strong>개발 규모</strong> — "웹 포트폴리오 서비스 + 해시 기록 모듈" 수준. 소규모 팀으로 수개월 내 MVP 구현 가능한 낮은 기술 난이도</li>
+    <li><strong>규제 리스크 최소화 설계</strong> — 코인 발행·토큰 판매·수익 배분을 하지 않는 순수 증명 구조로 시작 → 가상자산사업자(VASP) 신고 대상 아님, ICO 금지 저촉 없음. 금융 규제 영역 밖에서 안전하게 운영</li>
+    <li><strong>확장 대비</strong> — Phase 3의 정산 자동화, 향후 토큰화를 고려해 EVM 호환 체인 기준으로 설계</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. 핵심 파트너십 전략 — 성공의 전제 조건</h2>
+  <p>본 사업의 진입장벽은 블록체인 기술이 아니라 <strong>"디자이너 풀 × 증명 × 유통"의 조합</strong>이다. 기술은 수개월 내 구현 가능하므로, 아래 네 축의 파트너십 확보가 곧 사업의 핵심 경쟁력이자 최우선 실행 과제다.</p>
+  <div class="strengths">
+    <div class="strength">
+      <h4>디자이너 커뮤니티 제휴</h4>
+      <p>패션 창작 스튜디오·패션쇼 공간·디자이너 협회 등과 제휴해 초기 사용자 풀 확보 — 플랫폼 사업 최대 난관인 콜드스타트 문제를 제휴 채널로 해결</p>
+    </div>
+    <div class="strength">
+      <h4>공공기관 협력</h4>
+      <p>서울시 패션 정책사업, 특허청 IP 지원사업, 콘진원 과제 등과 연계 — 신진 디자이너 IP 보호라는 정책 명분이 뚜렷해 공공 협력 적합성이 높음</p>
+    </div>
+    <div class="strength">
+      <h4>유통 파트너</h4>
+      <p>도매 플랫폼·쇼룸·해외 리테일과 제휴해 Phase 3 '등록 → 거래' 연결 — 등록 디자인이 실제 수주로 이어지는 출구를 확보</p>
+    </div>
+    <div class="strength">
+      <h4>법률 파트너</h4>
+      <p>변리사·법무 제휴로 출원 원스톱과 도용 대응 패키지 구현 — 플랫폼의 '증거'가 실제 권리와 분쟁 대응으로 이어지는 신뢰의 연결 고리</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>8. 기대 효과</h2>
+  <ul>
+    <li><strong>디자이너</strong> — 공개 전 즉시 증거 확보로 도용 대응력 강화, 출원 문턱 완화, 등록 디자인의 거래 기회 창출</li>
+    <li><strong>산업</strong> — 신진 디자이너 IP 보호 인프라 확립, K-패션 창작 생태계의 신뢰 기반 조성</li>
+    <li><strong>정책</strong> — 서울시·특허청의 디자이너 육성/IP 보호 정책 과제와 직결되는 가시적 성과물</li>
+    <li><strong>플랫폼 사업자</strong> — 등록 디자인 데이터가 축적될수록 거래 중개 가치가 커지는 데이터 자산 확보, 공간(제휴) → 데이터(플랫폼) → 거래(유통)로 이어지는 밸류체인 구축</li>
+  </ul>
+</section>
+
+<section>
+  <h2>9. 리스크 및 대응</h2>
+  <div class="tablebox"><table>
+    <tr><th style="width:200px">리스크</th><th style="width:80px">수준</th><th>대응</th></tr>
+    <tr>
+      <td>수요 리스크 — 증명 단품은 팔리지 않음 (WIPO 선례)</td>
+      <td class="risk">높음</td>
+      <td>초기 공공 재원 + Phase 3 거래 연결로 지불 이유를 '보호'에서 '매출'로 전환</td>
+    </tr>
+    <tr>
+      <td>법적 효력의 한계 — 등록≠권리</td>
+      <td>중간</td>
+      <td>"증거+출원 연계"로 정직하게 포지셔닝, 변리사 제휴로 정식 권리화 경로 내장</td>
+    </tr>
+    <tr>
+      <td>기존 대안 — 특허청 신속심사(6일)가 이미 싸고 빠름</td>
+      <td>중간</td>
+      <td>차별화는 '공개 전 즉시 증거'와 '유통 연결' — 대체가 아닌 보완 관계로 설계</td>
+    </tr>
+    <tr>
+      <td>규제 리스크 — 토큰화 시 금융 규제 진입</td>
+      <td>낮음<br><span style="font-size:12px;color:var(--sub)">(설계로 회피)</span></td>
+      <td>코인 미발행 원칙 유지, 토큰화는 디지털자산기본법 2단계 입법 확정 후 별도 검토</td>
+    </tr>
+  </table></div>
+</section>
+
+<section>
+  <h2>10. 참고 자료</h2>
+  <div class="srcs"><ol>
+    <li><a href="https://www.wipo.int/en/web/wipo-proof">WIPO PROOF 서비스 중단 공지 (WIPO)</a></li>
+    <li><a href="https://cadhacks.medium.com/wipo-proof-discontinued-who-is-out-there-to-protect-your-cad-files-24cab82ebad9">CADChain — WIPO PROOF 중단 원인 분석</a></li>
+    <li><a href="https://blogyoume.com/2022/08/16/%ED%8C%A8%EC%85%98-%EB%94%94%EC%9E%90%EC%9D%B8%EC%9D%98-%EB%B3%B4%ED%98%B8-%EB%B0%A9%EC%95%88/">유미 IP — 패션 디자인의 보호 방안 (디자인보호법·부경법·저작권)</a></li>
+    <li><a href="https://kiyul.co.kr/archives/71117">기율특허법인 — 디자인 도용 침해 사례와 대응 실무</a></li>
+    <li><a href="https://www.tosspayments.com/blog/articles/legal2-4">토스페이먼츠 — 디자인 무단 사용·아이디어 탈취 대응</a></li>
+    <li><a href="https://www.copyright.or.kr/information-materials/trend/tmis/view.do?brdctsno=54715">한국저작권위원회 — 저작권 산업기술 동향 (AI 시대 법제도 개선 연구)</a></li>
+    <li><a href="https://www.tokenpost.kr/news/policy/319834">TokenPost — 디지털자산기본법 2단계 입법 동향 (토큰화 규제 환경)</a></li>
+  </ol></div>
+</section>
+
+<footer>
+  본 제안서는 2026년 7월 10일 기준 공개 자료 조사에 기반한 공모전 출품용 초안이며, 법률 자문·수요 조사를 통한 검증을 전제로 한다. 무단 배포를 금한다.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울랩스 · XPHERE(XP) 분석 보고서</title>
+<style>
+  :root{
+    --ink:#1a1f2b; --sub:#5a6478; --line:#e3e7ef; --bg:#f7f8fb; --card:#ffffff;
+    --accent:#2b4bdf; --accent-soft:#eef1fd;
+    --up:#0e8a5f; --down:#c43d3d; --warn-bg:#fdf6ec; --warn-line:#e8c98a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 24px 80px}
+
+  header.report{border-bottom:3px solid var(--ink);padding-bottom:24px;margin-bottom:36px}
+  .kicker{font-size:12px;letter-spacing:.18em;color:var(--accent);font-weight:700;text-transform:uppercase;margin-bottom:10px}
+  h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+  .meta{margin-top:14px;color:var(--sub);font-size:13px;display:flex;gap:18px;flex-wrap:wrap}
+  .meta span b{color:var(--ink);font-weight:600}
+
+  section{margin-bottom:44px}
+  h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:16px;padding-left:12px;border-left:4px solid var(--accent)}
+  h3{font-size:15.5px;font-weight:700;margin:22px 0 8px}
+  p{margin-bottom:12px}
+  ul{margin:0 0 12px 20px}
+  li{margin-bottom:6px}
+  strong{font-weight:700}
+
+  .summary{background:var(--accent-soft);border:1px solid #ccd6f8;border-radius:10px;padding:20px 22px;margin-bottom:36px}
+  .summary .label{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.12em;margin-bottom:8px}
+  .summary p{margin-bottom:8px}
+  .summary p:last-child{margin-bottom:0}
+
+  .tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card);margin:14px 0 18px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  th{background:#f0f2f8;text-align:left;padding:10px 14px;font-weight:700;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .pos{color:var(--up);font-weight:600}
+  .neg{color:var(--down);font-weight:600}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 18px}
+  @media(max-width:640px){.cols{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .panel h4{font-size:14px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .dot.up{background:var(--up)} .dot.down{background:var(--down)}
+  .panel ul{margin-left:18px;margin-bottom:0}
+  .panel li{font-size:13.5px;margin-bottom:8px}
+  .panel li:last-child{margin-bottom:0}
+
+  .callout{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:10px;padding:16px 20px;margin:14px 0 18px;font-size:14px}
+  .callout b{font-weight:800}
+
+  .lineage{display:flex;align-items:stretch;gap:0;margin:14px 0 18px;flex-wrap:wrap}
+  .lineage .node{flex:1;min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .lineage .arrow{display:flex;align-items:center;padding:0 12px;color:var(--sub);font-size:22px;font-weight:700}
+  .lineage .node .tag{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--sub);margin-bottom:6px}
+  .lineage .node .name{font-size:16px;font-weight:800;margin-bottom:6px}
+  .lineage .node p{font-size:13px;color:var(--sub);margin:0}
+  @media(max-width:640px){.lineage{flex-direction:column}.lineage .arrow{justify-content:center;padding:6px 0;transform:rotate(90deg)}}
+
+  .srcs{font-size:13px;color:var(--sub)}
+  .srcs ol{margin-left:20px}
+  .srcs li{margin-bottom:4px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--sub)}
+
+  @media print{
+    body{background:#fff;font-size:12.5px}
+    .wrap{max-width:100%;padding:0}
+    .panel,.tablebox,.summary,.callout{break-inside:avoid}
+    a{color:inherit}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="report">
+  <div class="kicker">Company &amp; Token Research</div>
+  <h1>서울랩스(Seoul Labs) · XPHERE(XP) 분석 보고서</h1>
+  <div class="meta">
+    <span>작성일 <b>2026년 7월 10일</b></span>
+    <span>대상 <b>㈜서울랩스 / XPHERE 메인넷 / XP 코인</b></span>
+    <span>기준 시세 <b>2026-07-10 (CoinGecko·CoinMarketCap)</b></span>
+  </div>
+</header>
+
+<div class="summary">
+  <div class="label">EXECUTIVE SUMMARY</div>
+  <p><strong>서울랩스는 자체 개발 레이어1 블록체인 메인넷 '엑스피어(XPHERE)'를 기반으로 정부(B2G)·기업(B2B)에 블록체인 인프라를 공급하는 한국 웹3.0 스타트업이다.</strong> 라오스 정부 전자결재 시스템 15년 계약, KOICA ODA 사업 시행사 선정 등 동남아 전자정부 시장을 틈새로 공략하고 있으며, 2024년 매출 약 52억 원을 기록했다.</p>
+  <p>메인넷의 기축 코인 <strong>XP</strong>는 시가총액 약 3,900만 달러(약 500억 원)의 소형 코인으로, 2025년 12월 저점 대비 약 27배 급등 후 현재 고점 대비 -83% 수준에서 거래 중이다. 실체 있는 B2G 수주 서사를 갖췄으나, 얇은 유동성과 미검증 수요라는 초고위험 특성을 동반한다.</p>
+</div>
+
+<section>
+  <h2>1. 회사 개요</h2>
+  <div class="tablebox"><table>
+    <tr><th style="width:160px">회사명</th><td>주식회사 서울랩스 (SEOULLABS Inc.)</td></tr>
+    <tr><th>설립</th><td>2023년 (대표 장도희)</td></tr>
+    <tr><th>소재지</th><td>서울 강남구 테헤란로79길 6 (삼성동, 제이에스타워) 5층</td></tr>
+    <tr><th>규모</th><td>직원 12~18명, 2024년 매출 약 52억 원</td></tr>
+    <tr><th>사업</th><td>블록체인 메인넷(XPHERE) 개발·운영, B2G/B2B 블록체인 인프라 공급, 토크노믹스 컨설팅</td></tr>
+    <tr><th>슬로건</th><td>"실물 경제를 위한 블록체인 인프라"</td></tr>
+  </table></div>
+  <p>국산 블록체인 엔진 <strong>'사슬(SASEUL)'</strong>(아티프렌즈 개발)의 전략적 파트너로 출발해 컨설팅·개발대행·토큰 발행·인큐베이팅을 수행하다가, 사슬 기술을 발전시킨 자체 메인넷 XPHERE를 직접 개발하며 인프라 사업자로 전환했다. 쉽게 말해 <em>"이더리움 같은 블록체인 판(메인넷)을 국산으로 직접 만들고, 그 위에 정부·기업용 시스템을 지어주는 회사"</em>다.</p>
+</section>
+
+<section>
+  <h2>2. 핵심 솔루션</h2>
+  <h3>XPHERE 2.0 메인넷</h3>
+  <ul>
+    <li><strong>이중 체인 구조</strong> — 보안 담당 Proof Chain(PoW·SHA-256) + 속도 담당 Main Chain(XPBFT)으로 "보안 vs 속도" 딜레마를 구조적으로 해결</li>
+    <li><strong>공인 성능 검증</strong> — KTR(한국화학융합시험연구원) 성능검증서(EST-2025-000053) 기준 5,200+ TPS, 약 1초(0.9초) 블록 확정성</li>
+    <li><strong>100% EVM 호환</strong> — Solidity, Web3.js 등 이더리움 개발 도구와 디앱을 수정 없이 사용 가능</li>
+    <li>수수료 건당 ₩0.01 이하, 글로벌 노드 36개(검증자 기준), 99.9% 업타임</li>
+  </ul>
+  <h3>AI 슈퍼월렛 (CES 2026 공개)</h3>
+  <ul>
+    <li>분산신원증명(DID)·전자서명·결제를 하나의 앱에 통합한 AI 지갑</li>
+    <li>개발도상국의 금융 접근성 문제 해결에 최적화 — B2G 사업과 연결되는 소비자 접점</li>
+  </ul>
+  <h3>부속 서비스</h3>
+  <ul>
+    <li>블록 탐색기 TAMSA Explorer, 토크노믹스 컨설팅, 한국형 스테이블코인 발행 솔루션(출시 예고)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>3. 사업 실적 — 동남아 B2G 중심</h2>
+  <div class="tablebox"><table>
+    <tr><th style="width:130px">국가/기관</th><th>내용</th></tr>
+    <tr><td><b>라오스</b></td><td>정부 전자결재(전자정부) 시스템 상용화 계약. 라오스 정부 공식 IT 파트너 SITC와 15년 장기 계약/MOA. KOICA 공적개발원조(ODA) 사업 시행사로 국가 디지털 신원인증·전자정부 구축 진행 중</td></tr>
+    <tr><td><b>태국</b></td><td>합작법인 FOB Lab 출범 (2024년 3월, 엑스피어 프로젝트 공개와 동시 발표)</td></tr>
+    <tr><td><b>캄보디아</b></td><td>유진종합건설과 함께 캄보디아 정부와 엑스피어 기반 IT 협력</td></tr>
+    <tr><td><b>기타</b></td><td>UNDP·정몽구재단 '글로벌 임팩트프러너' CVC 혁신상 수상(2026.7), 베트남·필리핀·말레이시아 등 아세안 확산 검토. CES 2026 서울통합관 참가</td></tr>
+  </table></div>
+  <p>전략의 요지는 국내외 대형 체인과의 정면승부가 아니라, <strong>동남아 개도국 정부의 전자정부·금융 인프라를 ODA 연계 장기계약으로 선점</strong>하는 것이다.</p>
+</section>
+
+<section>
+  <h2>4. 관련 가상화폐 — 사슬(SL)에서 엑스피어(XP)로</h2>
+  <div class="lineage">
+    <div class="node">
+      <div class="tag">전신 · 2019~</div>
+      <div class="name">사슬코인 (SL)</div>
+      <p>아티프렌즈의 국산 메인넷 '사슬'의 네이티브 코인. 휴대폰 앱 채굴로 약 1.8만 노드의 국내 커뮤니티를 형성했으나 메이저 거래소 상장 등 시장 존재감은 제한적</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node">
+      <div class="tag">현재 주력 · 2024.3 제네시스</div>
+      <div class="name">엑스피어 (XP)</div>
+      <p>사슬 기술을 발전시킨 XPHERE 메인넷의 기축 코인. 네트워크 수수료(가스)·채굴 보상에 사용. SL 자산·이용자를 XP 생태계로 유인하는 순환 구조를 공식 표방</p>
+    </div>
+  </div>
+  <h3>XP 토크노믹스</h3>
+  <ul>
+    <li><strong>최대 공급량 55억 개</strong>, 현재 유통량 약 28.3억 개(약 51%)</li>
+    <li>2024년 3월 12일 제네시스 발행. PoW 채굴로 신규 발행되며 <strong>발행량이 연간 약 26%씩 감소</strong>, 약 100년간 채굴 지속 설계</li>
+    <li><strong>거래 수수료의 50% 영구 소각</strong> — 디플레이션 장치</li>
+    <li>투자 논리: 메인넷 위의 정부·기업 시스템이 실제 가동되면 가스비용 XP 수요가 구조적으로 발생</li>
+  </ul>
+  <h3>상장 현황</h3>
+  <ul>
+    <li>2025년 3월 <strong>MEXC·BingX·LBank</strong> 상장(이후 BloFin 추가). 상장 직후 노드 수 3만 → 16만 개로 급증 보도</li>
+    <li><strong>국내 원화 거래소(업비트·빗썸·코인원) 미상장</strong> — 국내 투자자는 해외 거래소를 통해서만 거래 가능</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. XP 시세 현황 (2026.7.10 기준)</h2>
+  <div class="tablebox"><table>
+    <tr><th>항목</th><th>수치</th><th>비고</th></tr>
+    <tr><td>현재 가격</td><td class="num">$0.0138 (약 19원)</td><td>XP/USDT 기준</td></tr>
+    <tr><td>시가총액</td><td class="num">약 $38.9M (약 500억 원)</td><td>CMC 470~500위권</td></tr>
+    <tr><td>24시간 거래량</td><td class="num">$0.5M~0.8M</td><td>시총 대비 얇은 유동성</td></tr>
+    <tr><td>주요 거래 페어</td><td>BingX · BloFin · MEXC</td><td>XP/USDT</td></tr>
+  </table></div>
+  <div class="tablebox"><table>
+    <tr><th>구간</th><th>변동률</th></tr>
+    <tr><td>최근 7일</td><td class="num neg">-12%</td></tr>
+    <tr><td>최근 30일</td><td class="num pos">+54%</td></tr>
+    <tr><td>최근 1년</td><td class="num pos">+25%</td></tr>
+    <tr><td>역대 최저가 → 현재</td><td class="num pos">$0.0030 (2025.12.25) → 약 4.6배</td></tr>
+    <tr><td>역대 최고가 → 현재</td><td class="num neg">$0.0806 (2026.5.16) → -83%</td></tr>
+  </table></div>
+  <p>2025년 12월 저점에서 2026년 5월 고점까지 <strong>약 27배 급등</strong>했다가 두 달 만에 고점의 1/6 수준으로 되돌림했다. XPHERE 2.0 업그레이드·해외 거래소 상장·CES 2026 참가 등 호재가 몰린 구간에 급등한 뒤 급락한, 전형적인 소형 코인의 고변동성 패턴이다.</p>
+</section>
+
+<section>
+  <h2>6. 전망</h2>
+  <div class="callout"><b>예측 사이트 수치는 참고 가치가 낮다.</b> 같은 2026년 전망인데 Traders Union은 $0.0075(하락), BeInCrypto 계열은 평균 $0.15(약 11배 상승)를 제시해 서로 20배 차이가 난다. 알고리즘 추정치의 숫자보다 아래의 상승·하락 요인을 보는 것이 실질적이다.</div>
+  <div class="cols">
+    <div class="panel">
+      <h4><span class="dot up"></span>상승 요인 (Bull Case)</h4>
+      <ul>
+        <li>라오스 15년 계약·KOICA ODA 등 <b>실제 B2G 수주가 있는 몇 안 되는 국산 메인넷</b> — 시스템 가동 시 가스용 XP 수요가 구조적으로 발생</li>
+        <li>수수료 50% 소각 + 채굴량 연 26% 감소의 공급 축소 설계</li>
+        <li>시총 500억 원대의 작은 체급 — 국내 원화 거래소 상장, 대형 계약 발표 등 이벤트 하나에 크게 움직일 수 있음</li>
+        <li>아세안 확장(캄보디아·태국·베트남 등)·스테이블코인 솔루션 등 뉴스 파이프라인 지속</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4><span class="dot down"></span>하락 요인 (Bear Case)</h4>
+      <ul>
+        <li>유통량이 향후 최대 2배 가까이 증가 가능 — 채굴 물량이 계속 시장에 공급됨</li>
+        <li>라오스·캄보디아 사업은 아직 계약·MOA 단계 — <b>실제 대규모 트랜잭션 수요는 미검증</b></li>
+        <li>해외 중소 거래소 위주의 얇은 유동성 — 이미 고점 대비 -83% 경험</li>
+        <li>국내 원화 거래소 상장은 규제 문턱이 높고, 사슬(SL) 커뮤니티 기반 이력도 심사 시 변수</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>결론:</strong> XP는 "동남아 전자정부 수주 실적이 있는 국산 메인넷"이라는 실체 있는 서사를 가진 코인이지만, 본질적으로 <strong>초고위험 소형 알트코인</strong>이다. 향후 가치는 ① 정부 시스템의 실가동에 따른 트랜잭션 수요 확인, ② 국내 원화 거래소 상장 여부라는 두 이벤트에 달려 있으며, 그 전까지는 뉴스에 따라 수배씩 오르내리는 변동성을 감수해야 한다. 투자 시 잃어도 되는 규모로만 접근할 것을 권한다.</p>
+</section>
+
+<section>
+  <h2>7. 규제 환경 — 무엇이 자유이고 무엇이 허가인가</h2>
+  <p>블록체인 <strong>기술 개발 자체는 허가가 필요 없지만, 돈(코인·스테이블코인)을 다루는 순간부터 단계별로 금융 규제가 적용</strong>된다. 서울랩스가 해외 거래소에만 상장하고 동남아 정부를 공략하는 사업 구조도 이 규제 지도와 맞닿아 있다.</p>
+  <div class="tablebox"><table>
+    <tr><th style="width:190px">영역</th><th style="width:150px">규제 수준</th><th>내용</th></tr>
+    <tr>
+      <td><b>① 기술 개발·메인넷 운영</b></td>
+      <td class="pos">허가 불필요</td>
+      <td>블록체인 소프트웨어 개발·메인넷 운영은 일반 SW 개발과 동일 — XPHERE 개발 자체에는 제약 없음</td>
+    </tr>
+    <tr>
+      <td><b>② 코인 발행·판매 (ICO)</b></td>
+      <td class="neg">국내 사실상 금지</td>
+      <td>2017년부터 일반 대중 대상 코인 공개판매(ICO) 금지 방침 유지 → 국내 프로젝트 대부분 해외 법인 통해 발행. XP가 해외 거래소에만 상장된 배경과 무관치 않음</td>
+    </tr>
+    <tr>
+      <td><b>③ 가상자산사업자 (VASP)</b></td>
+      <td class="neg">신고 수리 필요<br>(사실상 허가제)</td>
+      <td>거래소·보관/수탁·고객자산을 맡는 지갑 서비스는 특정금융정보법상 FIU 신고 수리 + ISMS 인증 + 은행 실명계좌 등 고난도 요건. 서울랩스 '슈퍼월렛'도 수탁형이면 신고 대상 가능</td>
+    </tr>
+    <tr>
+      <td><b>④ 유통 시장</b></td>
+      <td class="neg">이용자보호법 적용</td>
+      <td>가상자산이용자보호법(2024.7 시행) — 시세조종·미공개정보 이용 형사처벌, 국내 상장은 거래소 협의체(DAXA) 심사 통과 필요. XP의 원화 거래소 상장이 어려운 문턱</td>
+    </tr>
+    <tr>
+      <td><b>⑤ 스테이블코인</b></td>
+      <td class="neg">입법 진행 중<br>(인허가 사업 예정)</td>
+      <td>'디지털자산기본법 2단계' 입법 진행 중. 발행 주체를 은행 중심으로 한정할지(한은: 은행 컨소시엄 지분 51%+ 요구) 핀테크에 개방할지(금융위) 부처 간 충돌로 법안 제출이 2026년으로 연기. 서울랩스의 '한국형 스테이블코인 솔루션'의 운명이 이 법에 달려 있음</td>
+    </tr>
+    <tr>
+      <td><b>⑥ 해외 B2G 사업</b></td>
+      <td>상대국 정부 계약<br>= 사업권</td>
+      <td>라오스 전자정부 등은 한국 규제보다 상대국 정부와의 계약·파트너십 자체가 진입장벽이자 허가. 라오스 공식 IT 파트너(SITC)와의 15년 계약 + KOICA ODA가 그 장치</td>
+    </tr>
+  </table></div>
+  <div class="callout"><b>핵심:</b> "플랫폼(블록체인)을 만드는 건 자유, 그 위의 돈을 다루는 순간 금융 규제 대상." 따라서 이 사업의 성패는 기술만큼이나 스테이블코인 입법 등 정책 뉴스에 좌우된다 — 경제·사회(정책)·과학(기술)이 연결되어 움직이는 대표 사례다.</div>
+</section>
+
+<section>
+  <h2>8. 경쟁 구도</h2>
+  <div class="tablebox"><table>
+    <tr><th style="width:220px">층위</th><th>주요 경쟁자</th><th>비고</th></tr>
+    <tr><td>국내 자체 메인넷 진영</td><td>카이아(Kaia), 위메이드(위믹스)</td><td>"국산 L1 + 생태계" 동일 모델 — 가장 직접적 경쟁</td></tr>
+    <tr><td>국내 B2B/B2G 블록체인 인프라</td><td>람다256(루니버스), 파라메타(구 아이콘루프), CPLABS(구 코인플러그), 블로코</td><td>전자정부·DID·인증 시장의 기존 강자</td></tr>
+    <tr><td>글로벌 EVM 레이어1/2</td><td>Polygon, Avalanche, Hedera 등</td><td>해외 정부·기업이 국산 체인을 택할 이유를 만들어야 하는 상대</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2>9. 참고 자료</h2>
+  <div class="srcs"><ol>
+    <li><a href="https://www.seoullabs.io/">서울랩스 공식 홈페이지</a> · <a href="https://www.seoullabs.io/technology/xphere">XPHERE 2.0 기술 페이지</a></li>
+    <li><a href="https://dealsite.co.kr/articles/112964/103101">딜사이트 — 메인넷 '사슬'로 블록체인 생태계 조성</a></li>
+    <li><a href="https://blockchaintoday.co.kr/news/articleView.html?idxno=45430">블록체인투데이 — 라오스 정부 전자결재시스템 상용화 계약</a></li>
+    <li><a href="https://www.hankookilbo.com/news/article/A2026010610460002446">한국일보 — CES 2026 K-블록체인 '슈퍼월렛' 공개</a></li>
+    <li><a href="https://www.etnews.com/20240327000334">전자신문 — 태국 FOB Lab 출범·엑스피어 출시</a></li>
+    <li><a href="http://www.dt.co.kr/contents.html?article_no=2024043002109923083006">디지털타임스 — 캄보디아 정부 IT 협력</a></li>
+    <li><a href="https://wowtale.net/2026/07/09/261269/">와우테일 — UNDP·정몽구재단 CVC 혁신상</a></li>
+    <li><a href="http://www.e2news.com/news/articleView.html?idxno=318027">이투뉴스 — MEXC·BingX·LBank 상장, 노드 5배 증가</a></li>
+    <li><a href="https://www.kspost.biz/news/articleView.html?idxno=1115">코리아스타트업포스트 — 한국형 스테이블코인 솔루션 예고</a></li>
+    <li><a href="https://www.coingecko.com/en/coins/xphere">CoinGecko — Xphere</a> · <a href="https://coinmarketcap.com/currencies/xphere/">CoinMarketCap — Xphere</a></li>
+    <li><a href="https://tradersunion.com/currencies/forecast/xp-usd/">Traders Union 예측</a> · <a href="https://beincrypto.com/price/xphere/price-prediction/">BeInCrypto 예측</a></li>
+    <li><a href="https://www.wanted.co.kr/company/45956">원티드 기업정보</a> · <a href="https://bizno.net/article/2128703047">비즈노 법인정보</a></li>
+    <li><a href="https://www.tokenpost.kr/news/policy/319834">TokenPost — 디지털자산기본법 2단계 입법, 스테이블코인 규제로 연기</a></li>
+    <li><a href="https://www.sedaily.com/article/20015028">서울경제 — 거래소 지분제한·은행 주도 스테이블코인, 2단계 입법 발의</a></li>
+    <li><a href="https://biz.newdaily.co.kr/site/data/html/2026/01/28/2026012800171.html">뉴데일리 — 원화 스테이블코인, 한은 vs 여당 '은행 51%' 충돌</a></li>
+    <li><a href="https://www.lawtimes.co.kr/news/articleView.html?idxno=215219">법률신문 — 2026년 가상자산산업 10대 핵심 이슈 (법무법인 화우)</a></li>
+    <li><a href="https://blockchaintoday.co.kr/news/articleView.html?idxno=64010">블록체인투데이 — 하반기 규제 폭풍: 스테이블코인 입법·과세</a></li>
+  </ol></div>
+</section>
+
+<footer>
+  본 보고서는 2026년 7월 10일 기준 공개 웹 자료를 취합한 것으로, 투자 권유가 아닌 정보 제공 목적입니다. 가상자산은 원금 전액 손실이 가능한 초고위험 자산입니다.
+</footer>
+
+</div>
+</body>
+</html>

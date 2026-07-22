@@ -9,6 +9,7 @@
     --blue:#2657E8;--blue-soft:#EEF3FE;
     --violet:#6D4FE0;--violet-soft:#F1EEFC;
     --teal:#0E9BB5;--teal-soft:#E8F7FA;
+    --amber:#B45309;--amber-soft:#FFF6E6;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -51,6 +52,8 @@
   .tag.proto .dot{background:var(--teal);}
   .tag.project{background:var(--blue-soft);color:var(--blue);}
   .tag.project .dot{background:var(--blue);}
+  .tag.report{background:var(--amber-soft);color:var(--amber);}
+  .tag.report .dot{background:var(--amber);}
   .date{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
   .doc b{font-size:17.5px;font-weight:800;letter-spacing:-.01em;line-height:1.35;margin-bottom:8px;}
   .doc .desc{font-size:13.5px;color:var(--muted);flex:1;margin-bottom:18px;}
@@ -75,6 +78,7 @@
     </div>
     <button class="chip on" data-tag="">전체</button>
     <button class="chip" data-tag="프로젝트">프로젝트</button>
+    <button class="chip" data-tag="보고서">보고서</button>
     <button class="chip" data-tag="디자인 시안">디자인 시안</button>
     <button class="chip" data-tag="프로토타입">프로토타입</button>
     <button class="sort" id="sort">최신순 ↓</button>
@@ -88,8 +92,8 @@
   <div class="grid" id="list">
     <a class="doc" href="https://stitchsealhq.github.io/" target="_blank" rel="noopener" data-tag="프로젝트" data-date="2026-07-20">
       <span class="tagline"><span class="tag project"><span class="dot"></span>프로젝트</span><span class="date">2026-07-20</span></span>
-      <b>STITCHSEAL 메인 사이트</b>
-      <span class="desc">stitchsealhq.github.io — 개인 브랜드 랜딩 페이지</span>
+      <b>StitchSeal</b>
+      <span class="desc">패션 디자인 IP 증명 플랫폼 — 등록→봉인→증명서→검증 프로토타입 라이브</span>
       <span class="more">사이트 열기 <span class="arr">→</span></span>
     </a>
 
@@ -98,6 +102,20 @@
       <b>동대문 아카이브</b>
       <span class="desc">동대문 관련 뉴스·자료 자동 수집 아카이브 — 매일 자동 갱신 · 연도별 분류 · 유튜브 포함</span>
       <span class="more">사이트 열기 <span class="arr">→</span></span>
+    </a>
+
+    <a class="doc" href="p/stitchseal-proposal/" data-tag="보고서" data-date="2026-07-16">
+      <span class="tagline"><span class="tag report"><span class="dot"></span>보고서</span><span class="date">2026-07-16</span></span>
+      <b>패션 디자인 IP 증명·거래 플랫폼 사업제안서</b>
+      <span class="desc">StitchSeal 사업제안서 v1.1 — 문제 인식 · 솔루션 · 성장 전략 · 수익 모델</span>
+      <span class="more">문서 보기 <span class="arr">→</span></span>
+    </a>
+
+    <a class="doc" href="p/seoullabs-xp-report/" data-tag="보고서" data-date="2026-07-10">
+      <span class="tagline"><span class="tag report"><span class="dot"></span>보고서</span><span class="date">2026-07-10</span></span>
+      <b>서울랩스 · XPHERE(XP) 분석 보고서</b>
+      <span class="desc">블록체인 기업 서울랩스와 XP 코인 — 사업 실적 · 시세 · 규제 환경 · 경쟁 구도</span>
+      <span class="more">문서 보기 <span class="arr">→</span></span>
     </a>
 
     <a class="doc" href="p/fitgrant/" data-tag="디자인 시안" data-date="2026-07-10">
